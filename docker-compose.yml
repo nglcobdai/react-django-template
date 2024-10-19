@@ -2,6 +2,7 @@ version: '3'
 services:
   backend:
     build:
+      context: .
       dockerfile: docker/python/Dockerfile
     volumes:
       - ./backend:/backend
@@ -12,6 +13,7 @@ services:
 
   frontend:
     build:
+      context: .
       dockerfile: docker/node/Dockerfile
     volumes:
       - ./frontend/node:/usr/src/app/frontend
