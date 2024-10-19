@@ -28,6 +28,8 @@ jobs:
 
       - name: Build the containers & Start the containers
         run: |
+          docker-compose run --rm backend django-admin startproject src .
+          docker-compose run --rm frontend sh -c "npm install -g create-react-app && create-react-app frontend"
           docker-compose -f docker-compose.yml --env-file .env up --build -d
 
       - name: Test with pytest
