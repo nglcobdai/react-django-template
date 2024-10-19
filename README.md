@@ -33,7 +33,7 @@ $ cp .env{.example,}
 ### 3. Docker Build & Run
 
 ```sh
-$ docker-compose run backend django-admin startproject src .
+$ docker-compose run --rm backend django-admin startproject src .
 $ docker-compose run --rm frontend sh -c "npm install -g create-react-app && create-react-app frontend"
 $ docker-compose build --no-cache
 ```
