@@ -1,13 +1,22 @@
-version: "3.3"
+version: '3'
 services:
-  project:
+  backend:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: docker/python/Dockerfile
     volumes:
-      - .:/root/workspace
-    env_file:
-      - .env
-    tty: true # retain container up
-    command: /bin/bash
-    shm_size: ${DOCKER_SHM_SIZE}
+      - ./backend:/backend
+    command: python3 manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    tty: true
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    volumes:
+      - ./frontend/node:/usr/src/app/frontend
+    command: sh -c "cd /usr/src/app/frontend && yarn start"
+    ports:
+      - "3000:3000"

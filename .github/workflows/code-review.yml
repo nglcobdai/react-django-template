@@ -25,7 +25,9 @@ jobs:
       - name: Install poetry
         run: pip install poetry
       - name: poetry install
-        run: poetry install --no-root
+        run: |
+          cd docker/python
+          poetry install --no-root
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
